@@ -1,26 +1,24 @@
 package pers.zhousx.screwutil.config;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @Component
 //@ConfigurationProperties(prefix = "config")
-@PropertySource(value = "config.properties")
+@PropertySource(value = "config.properties",encoding = "UTF-8")
 public class ConfigProp {
 
     @Value("${config.filedir}")
     private String fileDir;
     @Value("${config.fileType:'md'}")
     private String fileType;
-    @Value("${config.filename}:'数据库文档'")
+    @Value("${config.filename:'数据库文档'}")
     private String filename;
     @Value("${config.ignoreTableNames}")
     private String ignoreTableNames;
@@ -40,29 +38,29 @@ public class ConfigProp {
     @Value("${config.designatedSuffixs}")
     private String designatedSuffixs;
     private List<String> designatedSuffixList;
-    @Value("${config.version}:'1.0.0'")
+    @Value("${config.version:'1.0.0'}")
     private String version;
-    @Value("${config.description}:'数据库设计文档'")
+    @Value("${config.description:'数据库设计文档'}")
     private String description;
 
     @PostConstruct
     private void dealDefault() {
-        if (!StringUtils.hasText(ignoreTableNames)) {
+        if (StringUtils.hasText(ignoreTableNames)) {
             ignoreTableNameList = Arrays.asList(ignoreTableNames.split(","));
         }
-        if (!StringUtils.hasText(ignorePrefixs)) {
+        if (StringUtils.hasText(ignorePrefixs)) {
             ignorePrefixList = Arrays.asList(ignorePrefixs.split(","));
         }
-        if (!StringUtils.hasText(ignoreSuffixs)) {
+        if (StringUtils.hasText(ignoreSuffixs)) {
             ignoreSuffixList = Arrays.asList(ignoreSuffixs.split(","));
         }
-        if (!StringUtils.hasText(designatedTableNames)) {
+        if (StringUtils.hasText(designatedTableNames)) {
             designatedTableNameList =  Arrays.asList(designatedTableNames.split(","));
         }
-        if (!StringUtils.hasText(designatedPrefixs)) {
+        if (StringUtils.hasText(designatedPrefixs)) {
             designatedPrefixList =  Arrays.asList(designatedPrefixs.split(","));
         }
-        if (!StringUtils.hasText(designatedSuffixs)) {
+        if (StringUtils.hasText(designatedSuffixs)) {
             designatedSuffixList =  Arrays.asList(designatedSuffixs.split(","));
         }
     }

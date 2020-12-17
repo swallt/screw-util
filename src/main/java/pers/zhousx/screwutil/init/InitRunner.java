@@ -6,7 +6,6 @@ import cn.smallbun.screw.core.engine.EngineFileType;
 import cn.smallbun.screw.core.engine.EngineTemplateType;
 import cn.smallbun.screw.core.execute.DocumentationExecute;
 import cn.smallbun.screw.core.process.ProcessConfig;
-import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -88,6 +87,6 @@ public class InitRunner implements ApplicationRunner, Ordered {
 
     @Override
     public int getOrder() {
-        return Integer.MIN_VALUE;
+        return 1;
     }
 }
